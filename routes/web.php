@@ -2,12 +2,17 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
+// Landing Page
+Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('landing', [LandingController::class, 'index']);
+
 // Dashboard
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Transactions
 Route::get('transactions/export', [TransactionController::class, 'export'])->name('transactions.export');

@@ -76,6 +76,14 @@
             <nav class="flex-1 px-4 py-4 space-y-1.5 overflow-y-auto">
                 <p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 mb-2">Menu Utama</p>
 
+                <!-- Landing Page -->
+                <a href="{{ route('landing') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:bg-slate-800/60 hover:text-white transition-all duration-200">
+                    <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>Halaman Depan</span>
+                </a>
+
                 <!-- Dashboard -->
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 {{ request()->routeIs('dashboard') ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-inner' : 'text-slate-300 hover:bg-slate-800/60 hover:text-white' }}">
                     <svg class="w-5 h-5 {{ request()->routeIs('dashboard') ? 'text-emerald-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,6 +147,13 @@
                 </div>
 
                 <div class="flex items-center gap-3">
+                    <a href="{{ route('landing') }}" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-xs text-slate-300 hover:text-white transition">
+                        <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        <span>Landing Page</span>
+                    </a>
+
                     <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/70 border border-slate-700/60 text-xs text-slate-300 font-medium">
                         <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -170,6 +185,7 @@
                             </button>
                         </div>
                         <nav class="mt-6 space-y-2">
+                            <a href="{{ route('landing') }}" class="block px-4 py-2.5 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800">🌐 Halaman Depan</a>
                             <a href="{{ route('dashboard') }}" class="block px-4 py-2.5 rounded-xl font-medium text-sm {{ request()->routeIs('dashboard') ? 'bg-emerald-500/10 text-emerald-400' : 'text-slate-300' }}">Dashboard</a>
                             <a href="{{ route('transactions.index') }}" class="block px-4 py-2.5 rounded-xl font-medium text-sm {{ request()->routeIs('transactions.*') ? 'bg-emerald-500/10 text-emerald-400' : 'text-slate-300' }}">Transaksi</a>
                             <a href="{{ route('categories.index') }}" class="block px-4 py-2.5 rounded-xl font-medium text-sm {{ request()->routeIs('categories.*') ? 'bg-emerald-500/10 text-emerald-400' : 'text-slate-300' }}">Kategori</a>
