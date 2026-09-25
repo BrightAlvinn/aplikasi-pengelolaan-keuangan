@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
@@ -11,15 +12,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('landing', [LandingController::class, 'index']);
 
-// Dashboard
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Authentication Routes
+Route::get('login', fn () => redirect('/?action=login'))->name('login');
+Route::post('login', [AuthController::class, 'login']);
+Route::get('register', fn () => redirect('/?action=register'))->name('register');
+Route::post('register', [AuthController::class, 'register']);
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('auth/google', [AuthController::class, 'googleLogin'])->name('auth.google');
 
-// Transactions
-Route::get('transactions/export', [TransactionController::class, 'export'])->name('transactions.export');
-Route::resource('transactions', TransactionController::class)->except(['show']);
+// Protected Dashboard & Financial Management Routes
+Route::middleware('auth')->group(function () {
+    // Dashboard
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-// Categories
-Route::resource('categories', CategoryController::class)->only(['index', 'store', 'update', 'destroy']);
+    // Transactions
+    Route::get('transactions/export', [TransactionController::class, 'export'])->name('transactions.export');
+    Route::resource('transactions', TransactionController::class)->except(['show']);
 
-// Reports
-Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
+    // Categories
+    Route::resource('categories', CategoryController::class)->only(['index', 'store', 'update', 'destroy']);
+
+    // Reports
+    Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
+});
