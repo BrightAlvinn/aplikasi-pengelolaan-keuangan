@@ -1,10 +1,205 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @source '../views/**/*.blade.php';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: 'Plus Jakarta Sans', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-heading: 'Kantumruy Pro', 'Kantumruy', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-primary: #4ABDAC;
+    --color-primary-hover: #3ca092;
+    --color-primary-dark: #2e7e73;
+    --color-primary-light: #eaf7f5;
+    --color-primary-50: #f0f9f8;
+    --color-primary-100: #d6f1ed;
+    --color-primary-200: #ade2dc;
+
+    --color-destructive: #FC4A1A;
+    --color-destructive-hover: #e03b0d;
+    --color-destructive-light: #fef0ec;
+    --color-destructive-50: #fff5f2;
+    --color-destructive-100: #fedbd2;
+
+    --color-expense: #FC4A1A;
+    --color-income: #4ABDAC;
+
+    --color-accent: #F7B733;
+    --color-accent-hover: #e5a420;
+    --color-accent-light: #fef9eb;
+    --color-accent-50: #fefdf5;
+    --color-accent-100: #fdecc0;
+    --color-pending: #F7B733;
+
+    --color-border-theme: #DFDCE3;
+    --color-secondary-bg: #DFDCE3;
+    --color-surface-soft: #F4F3F6;
+    --color-canvas: #F8F9FB;
+}
+
+@layer base {
+    body {
+        font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+        background-color: #F8F9FB;
+        color: #1E293B;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .dark body {
+        background-color: #0b0f17;
+        color: #e2e8f0;
+    }
+}
+
+/* Custom Design System Components & Utilities */
+.font-heading {
+    font-family: 'Kantumruy Pro', 'Kantumruy', sans-serif;
+}
+
+.font-body {
+    font-family: 'Manrope', sans-serif;
+}
+
+/* Primary Button Style from Design System */
+.btn-catat-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.875rem;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    background-color: #4ABDAC;
+    color: #ffffff;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 14px rgba(74, 189, 172, 0.3);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn-catat-primary:hover {
+    background-color: #3ca092;
+    box-shadow: 0 6px 18px rgba(74, 189, 172, 0.4);
+    transform: translateY(-1px);
+    color: #ffffff;
+}
+.btn-catat-primary:active {
+    transform: scale(0.98);
+}
+
+/* Outline Button Style from Design System */
+.btn-catat-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.875rem;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    background-color: #ffffff;
+    color: #4ABDAC;
+    border: 2px solid #4ABDAC;
+    box-shadow: 0 2px 8px rgba(74, 189, 172, 0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn-catat-outline:hover {
+    background-color: #4ABDAC;
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(74, 189, 172, 0.3);
+    transform: translateY(-1px);
+}
+.btn-catat-outline:active {
+    transform: scale(0.98);
+}
+
+.dark .btn-catat-outline {
+    background-color: #131b2a;
+    color: #4ABDAC;
+    border-color: #4ABDAC;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.dark .btn-catat-outline:hover {
+    background-color: #4ABDAC;
+    color: #ffffff;
+}
+
+/* Destructive Button */
+.btn-catat-destructive {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.875rem;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    background-color: #FC4A1A;
+    color: #ffffff;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 14px rgba(252, 74, 26, 0.3);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn-catat-destructive:hover {
+    background-color: #e03b0d;
+    box-shadow: 0 6px 18px rgba(252, 74, 26, 0.4);
+    transform: translateY(-1px);
+    color: #ffffff;
+}
+.btn-catat-destructive:active {
+    transform: scale(0.98);
+}
+
+/* Card Design with #DFDCE3 Border */
+.card-theme {
+    background-color: #ffffff;
+    border: 1px solid #DFDCE3;
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 20px -2px rgba(100, 116, 139, 0.06);
+    transition: all 0.2s ease;
+}
+.card-theme:hover {
+    border-color: #cfcbd6;
+}
+
+.dark .card-theme {
+    background-color: #131b2a;
+    border-color: #1e293b;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+}
+.dark .card-theme:hover {
+    border-color: #334155;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #F1F0F4;
+}
+.dark ::-webkit-scrollbar-track {
+    background: #0b0f17;
+}
+::-webkit-scrollbar-thumb {
+    background: #DFDCE3;
+    border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+    background: #334155;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #4ABDAC;
 }
